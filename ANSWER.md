@@ -1,4 +1,4 @@
-# Tip Calculator Assessment
+# Tip Calculator
 
 ## 1. 🚀 How to run
 
