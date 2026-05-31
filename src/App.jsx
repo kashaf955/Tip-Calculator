@@ -16,11 +16,12 @@ function ResultRow(props) {
 
 function App() {
   const [bill, setBill] = useState("");
-  const [tip, setTip] = useState("");
+  const [selectedTip, setSelectedTip] = useState(null);
+  const [customTip, setCustomTip] = useState("");
   const [people, setPeople] = useState("");
 
   const b = parseFloat(bill);
-  const t = parseFloat(tip);
+  const t = customTip !== "" ? parseFloat(customTip) : parseFloat(selectedTip) ?? 0;
   const p = parseFloat(people);  
   const isValid = !isNaN(b) && !isNaN(t) && !isNaN(p) && b > 0  && p >= 1 && t >= 0;
 
@@ -29,14 +30,26 @@ function App() {
   const perPerson = isValid ? grandTotal / p : 0;
 
   const billError = bill !== "" &&  (b <= 0 || isNaN(b)) ? "Bill must be greater than 0" : "";
-  const tipError = tip !== "" &&  (t < 0 || isNaN(t) || t > 100) ? "Tip must be between 0 and 100" : "";
-  const peopleError = people !== "" &&  (p <= 0 || isNaN(p)) ? "People must be 1" : "";
+  const tipError = customTip !== "" && (parseFloat(customTip) < 0 || parseFloat(customTip) > 100) ? "Tip must be between 0 and 100" : "";
+    const peopleError = people !== "" &&  (p <= 0 || isNaN(p)) ? "People must be 1" : "";
+  
 
   const reset = () => {
-    setBill("");
-    setTip("");
-    setPeople("");
-  }
+      setBill("");
+      setSelectedTip(null);
+      setCustomTip("");
+      setPeople("");
+    };
+
+  const handlePreset = (value) => {
+    setSelectedTip(value);
+    setCustomTip("");
+  };
+  
+  const handleCustom = (e) => {
+    setCustomTip(e.target.value);
+    setSelectedTip(null);
+  };
   
   return (
     <div className="calculator">
@@ -45,8 +58,17 @@ function App() {
         <div className="inputs">
           <input type="number" placeholder="Bill" value={bill} onChange={(e) => setBill(e.target.value)} />
           {billError && <p className="error">{billError}</p>}   
-          <input type="number" placeholder="Tip" value={tip} onChange={(e) => setTip(e.target.value)} />
-          {tipError && <p className="error">{tipError}</p>}   
+          <div className="tip-buttons">
+            <button className={selectedTip === 5  ? "active" : ""} onClick={() => handlePreset(5)}>5%</button>
+            <button className={selectedTip === 10 ? "active" : ""} onClick={() => handlePreset(10)}>10%</button>
+            <button className={selectedTip === 15 ? "active" : ""} onClick={() => handlePreset(15)}>15%</button>
+          </div>
+          <input 
+            type="number" 
+            placeholder="Custom %" 
+            value={customTip} 
+            onChange={handleCustom} 
+          />  
           <input type="number" placeholder="People" value={people} onChange={(e) => setPeople(e.target.value)} />
           {peopleError && <p className="error">{peopleError}</p>}  
           <button className="button" onClick={reset}>Reset</button>
