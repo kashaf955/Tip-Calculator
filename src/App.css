@@ -80,23 +80,23 @@ button:hover {
 }
 .tip-buttons {
   width: 30%;
-  padding: 1.5 rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
   display: flex;
   gap: 2rem;
   align-items: center;
-  margin-bottom: 0.75rem;
   flex: 1;
-  margin: 0;
-  }
+  margin-bottom: 1rem;
+}
+
+.tip-buttons button {
+  width: auto;
+  margin-top: 0;
+}
 
 .tip-buttons p{
   font-size: 1rem;
   font-weight: 600;
   color: #6b6375;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 .active {
   background: #4E02DD;
@@ -109,11 +109,16 @@ button:hover {
   }
   .tip-buttons {
     width: 100%;
+    gap: 1rem;
+    margin : 1rem 0;
   }
   .tip-buttons p{
     font-size: 0.8rem;
+    align-items: center;
+    justify-content: center;
   }
-  .tip-buttons button{
+  .tip-buttons{
     font-size: 0.8rem;
   }
+
 }
