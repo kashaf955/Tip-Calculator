@@ -31,6 +31,12 @@ function App() {
   const billError = bill !== "" &&  (b <= 0 || isNaN(b)) ? "Bill must be greater than 0" : "";
   const tipError = tip !== "" &&  (t < 0 || isNaN(t) || t > 100) ? "Tip must be between 0 and 100" : "";
   const peopleError = people !== "" &&  (p <= 0 || isNaN(p)) ? "People must be 1" : "";
+
+  const reset = () => {
+    setBill("");
+    setTip("");
+    setPeople("");
+  }
   
   return (
     <div className="calculator">
@@ -42,7 +48,8 @@ function App() {
           <input type="number" placeholder="Tip" value={tip} onChange={(e) => setTip(e.target.value)} />
           {tipError && <p className="error">{tipError}</p>}   
           <input type="number" placeholder="People" value={people} onChange={(e) => setPeople(e.target.value)} />
-          {peopleError && <p className="error">{peopleError}</p>}   
+          {peopleError && <p className="error">{peopleError}</p>}  
+          <button className="button" onClick={reset}>Reset</button>
         </div>
         <div className="results">
           <ResultRow label="Tip Amount" value= {tipAmount.toFixed(2)} />
