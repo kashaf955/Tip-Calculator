@@ -57,8 +57,9 @@ function App() {
       <div className="layout">
         <div className="inputs">
           <input type="number" placeholder="Bill" value={bill} onChange={(e) => setBill(e.target.value)} />
-          {billError && <p className="error">{billError}</p>}   
+          {billError && <p className="error">{billError}</p>}  
           <div className="tip-buttons">
+            <p>Tip Amount</p>
             <button className={selectedTip === 5  ? "active" : ""} onClick={() => handlePreset(5)}>5%</button>
             <button className={selectedTip === 10 ? "active" : ""} onClick={() => handlePreset(10)}>10%</button>
             <button className={selectedTip === 15 ? "active" : ""} onClick={() => handlePreset(15)}>15%</button>

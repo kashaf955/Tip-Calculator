@@ -86,9 +86,15 @@ button:hover {
   font-size: 1rem;
   cursor: pointer;
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
+  align-items: center;
 }
-
+.tip-buttons p{
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6b6375;
+  margin-top: 1rem;
+}
 .active {
   background: #4E02DD;
   border: 3px solid #c9a84c;
